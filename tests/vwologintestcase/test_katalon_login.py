@@ -5,13 +5,13 @@ import allure
 from tests.pageobjects.pom.loginpage import LoginPage
 from tests.pageobjects.pom.MakeAppointmentpage import MakeApp
 from tests.pageobjects.pom.MakeAppointmentdashboardPage import dashboardPage
-
+from tests.constants.constants import constants
 
 @pytest.fixture()
 def setup():
     driver=webdriver.Chrome()
     driver.maximize_window()
-    driver.get("https://katalon-demo-cura.herokuapp.com/profile.php#login")
+    driver.get(constants.app_url())
     return driver
 
 @allure.title("Invalid Login")
