@@ -6,7 +6,7 @@ from tests.pageobjects.pom.loginpage import LoginPage
 from tests.pageobjects.pom.MakeAppointmentpage import MakeApp
 from tests.pageobjects.pom.MakeAppointmentdashboardPage import dashboardPage
 from tests.constants.constants import constants
-
+from allure_commons.types import AttachmentType
 @pytest.fixture()
 def setup():
     driver=webdriver.Chrome()
@@ -37,6 +37,9 @@ def test_katalon_positive(setup):
     try:
         driver=setup
         makeapp=MakeApp(driver)
+        makeapp.make_App()
+        allure.attach(driver.get_screenshot_as_png(),name="dash.PNG",attachment_type=AttachmentType.PNG)
+        time.sleep(10)
         loginpage=LoginPage(driver)
         loginpage.katalon_login(user="John Doe",pas="ThisIsNotAPassword")
         dash=dashboardPage(driver)
